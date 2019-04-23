@@ -1,0 +1,38 @@
+{% extends "base.html" %}
+{% block content %}
+<!doctype = html>
+<html>
+    <head>
+        <title>
+           Add a Blog
+        </title>
+        <style>
+            form {
+                background-color: #eee;
+                padding: 20px;
+                margin: 0 auto;
+                width: 540px;
+                font: 16px sans-serif;
+                border-radius: 10px;
+            }
+            .error {color:red;}
+        </style>
+    </head>
+    <body>
+        <h1>
+            Add a Blog
+        </h1>
+        <form method='POST'>
+            Title:
+            <input type="text" name="title" value='{{title}}' />
+            <p class='error'>{{title_error}}</p>
+
+            <br> 
+            <input type=textarea rows="3" name="text" value='{{text}}' />
+            <p class='error'>{{text_error}}</p>
+
+            <br><input type="submit" value="Add Blog"/>
+        </form>
+    </body>
+</html>
+{% endblock %}
