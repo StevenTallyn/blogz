@@ -28,10 +28,10 @@ class Blog(db.Model):
 
 @app.route('/', methods=['POST', 'GET'])
 def index():
-    return redirect('/blog')
+    return redirect('/main')
 
-@app.route('/blog', methods=['POST', 'GET'])
-def blog():
+@app.route('/main', methods=['POST', 'GET'])
+def main_page():
     template = jinja_env.get_template('todos.html')
     blogs = Blog.query.all()
     return render_template('todos.html',title="Blogs", 
@@ -65,9 +65,20 @@ def validate_newpost():
            new_blog = Blog(blog_title, blog_text)
            db.session.add(new_blog)
            db.session.commit()
-        return redirect('/blog')
+           blog_id = str(new_blog.id)
+    
+        return redirect('/blog?id='+ blog_id)
     else:
         return template.render(title = title, text = text, title_error = title_error, text_error = text_error)
+
+@app.route('/blog', methods=['GET'])
+def blog():
+    blog_id=int(request.args.get('id'))
+    blog = Blog.query.get(blog_id)
+    template = jinja_env.get_template('blog.html')
+    return render_template('blog.html', title=blog.title, 
+        text=blog.text)
+
 
 if __name__ == '__main__':
     app.run()
