@@ -1,6 +1,10 @@
 {% extends "base.html" %}
 
 {% block content %}
+<p>
+Author:
+<a href='./blog?user_id={{owner.id}}'><b>{{owner.username}}</b></a>
+</p>
 <h1>{{title}}</h1>
     <br>
     <p>{{text}}</p>

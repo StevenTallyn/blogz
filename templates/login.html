@@ -1,0 +1,31 @@
+{% extends "base.html" %}
+
+{% block content %}
+<h1>Log in to Blogz!</h1>
+<p>If you don't have an account, you may <a href="/register">register</a> for one</p>
+<form action="/login" method="post">
+    <style>
+            form {
+                background-color: #eee;
+                padding: 20px;
+                margin: 0 auto;
+                width: 540px;
+                font: 16px sans-serif;
+                border-radius: 10px;
+                }
+            .error {color:red;}
+        </style>
+        <body>
+    
+                Username:
+                <input type="text" name="username" value='{{username}}' />
+                <p class='error'>{{username_error}}</p>
+    
+                <br> Password: 
+                <input type="password" name="password" />
+                <p class='error'>{{password_error}}</p>
+    
+                <br><input type="submit" value="Login"/>
+        </body>
+</form>
+{% endblock %}
