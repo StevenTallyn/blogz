@@ -166,7 +166,7 @@ def register():
             username_error = "Username is taken, please choose a different one."
             username = ""
 
-        if not existing_user:
+        if not existing_user and not username_error and not password_error and not verify_error:
             new_user = User(username, password)
             db.session.add(new_user)
             db.session.commit()
